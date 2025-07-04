@@ -1,0 +1,30 @@
+# Arquivos de Ambiente
+# Nunca versionar o arquivo .env, pois ele contém segredos!
+.env
+
+# Arquivos de Banco de Dados
+# O banco de dados do SQLite, se usado em desenvolvimento
+db.sqlite3
+
+# Arquivos de Cache e Compilados do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Pastas de ambientes virtuais
+venv/
+env/
+.venv/
+
+# Arquivos de IDEs e Editores
+.vscode/
+.idea/
+
+# Arquivos do Docker
+# A pasta de dados do PostgreSQL não deve ser versionada.
+postgres_data/
+
+# Arquivos do Sistema Operacional
+.DS_Store
+Thumbs.db

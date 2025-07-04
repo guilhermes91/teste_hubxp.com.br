@@ -1,0 +1,42 @@
+
+services:
+  # Serviço do Banco de Dados PostgreSQL
+  db:
+    image: postgres:13-alpine
+    container_name: weather-api-db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+
+  # Serviço do Cache Redis
+  redis:
+    image: redis:6-alpine
+    container_name: weather-api-redis
+    ports:
+      - "6379:6379"
+
+  # Serviço da Aplicação Django
+  web:
+    build: .
+    container_name: weather-api-web
+    # O comando 'migrate' foi removido daqui para um controle mais explícito na primeira inicialização.
+    # O 'runserver' é suficiente para o dia a dia, pois as migrações já terão sido aplicadas.
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+
+# Volume para persistência dos dados do PostgreSQL
+volumes:
+  postgres_data:

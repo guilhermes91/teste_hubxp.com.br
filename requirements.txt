@@ -1,0 +1,14 @@
+# Django Core
+django==4.2.6
+djangorestframework==3.14.0
+
+# Database
+psycopg2-binary==2.9.9
+
+# Cache
+redis==5.0.1
+django-redis==5.4.0
+
+# HTTP Requests and Environment
+requests==2.31.0
+python-dotenv==1.0.0
